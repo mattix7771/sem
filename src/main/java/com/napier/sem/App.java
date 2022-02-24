@@ -14,7 +14,7 @@ public class App
         a.connect();
 
         // Extract employee salary information
-        //ArrayList<Employee> employees = a.getAllSalaries();
+        ArrayList<Employee> allemployees = a.getAllSalaries();
 
         String title = "Engineer";
 
@@ -135,11 +135,11 @@ public class App
             String strSelect =
                     "SELECT employees.emp_no, employees.first_name, employees.last_name, salaries.salary "
                             + "FROM employees, salaries, titles "
-                            + "WHERE employees.emp_no = salaries.emp_no\n" +
-                            "            AND employees.emp_no = titles.emp_no\n" +
-                            "            AND salaries.to_date = '9999-01-01'\n" +
-                            "            AND titles.to_date = '9999-01-01'\n" +
-                            "            AND titles.title = '<title>' "
+                            + "WHERE employees.emp_no = salaries.emp_no " +
+                            "AND employees.emp_no = titles.emp_no " +
+                            "AND salaries.to_date = '9999-01-01' " +
+                            "AND titles.to_date = '9999-01-01' " +
+                            "AND titles.title = " + "\"" + title + "\""
                             + "ORDER BY employees.emp_no ASC";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
