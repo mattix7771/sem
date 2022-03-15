@@ -35,8 +35,8 @@ A request for finance information is sent to HR.
 
 ####EXTENSIONS
 ***
-3. Role does not exist:
-	i. HR advisor informs finance no role exists.
+1. Role does not exist:
+	i. HR advisor informs finance no such role exists.
 
 ####SUB-VARIATIONS
 ***
