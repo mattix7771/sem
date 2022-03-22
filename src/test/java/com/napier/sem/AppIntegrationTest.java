@@ -28,4 +28,31 @@ public class AppIntegrationTest
         assertEquals(emp.first_name, "Ronghao");
         assertEquals(emp.last_name, "Garigliano");
     }
+
+    @Test
+    void testGetEmployee2()
+    {
+        Employee emp = app.getEmployee("Ronghao", "Garigliano");
+        assertEquals(emp.emp_no, 255530);
+        assertEquals(emp.first_name, "Ronghao");
+        assertEquals(emp.last_name, "Garigliano");
+    }
+
+    @Test
+    void testGetAllSalaries(){
+        ArrayList<Employee> all = app.getAllSalaries();
+        assertEquals(all.size(),71086);
+    }
+
+    @Test
+    void testGetSpecificSalary(){
+        ArrayList<Employee> salaries = app.getSpecificSalaries("Engineer");
+        assertEquals(salaries.size(), 9224);
+    }
+
+    @Test
+    void testGetSpecificSalaryNull(){
+        ArrayList<Employee> salaries = app.getSpecificSalaries("None");
+        assertEquals(salaries.size(), 0);
+    }
 }

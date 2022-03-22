@@ -40,7 +40,7 @@ public class App {
             String strSelect =
                     "SELECT employees.emp_no, employees.first_name, employees.last_name,dept_manager.emp_no "
                             + "FROM employees, dept_manager, dept_emp "
-                            + "WHERE employees.emp_no = " + ID
+                            + "WHERE employees.emp_no = " + "\'" + ID + "\'"
                             + "AND employees.emp_no = dept_emp.emp_no "
                             + "AND dept_manager.dept_no = dept_emp.dept_no ";
             // Execute SQL statement
@@ -68,10 +68,10 @@ public class App {
             Statement stmt = con.createStatement();
             // Create string for SQL statement
             String strSelect =
-                    "SELECT emp_no, first_name, last_name,dept_manager.emp_no "
+                    "SELECT employees.emp_no, first_name, last_name, dept_manager.emp_no "
                             + "FROM employees, dept_manager, dept_emp "
-                            + "WHERE first_name = " + fname
-                            + "AND last_name = " + lname
+                            + "WHERE first_name = " + "\'" + fname + "\'"
+                            + "AND last_name = " + "\'" + lname + "\'"
                             + "AND employees.emp_no = dept_emp.emp_no "
                             + "AND dept_manager.dept_no = dept_emp.dept_no ";
             // Execute SQL statement
