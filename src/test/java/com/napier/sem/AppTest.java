@@ -52,4 +52,26 @@ public class AppTest
         employees.add(emp);
         app.printSalaries(employees);
     }
+
+    @Test
+    void displayEmployee(){
+        Employee emp = new Employee();
+        emp.emp_no = 1;
+        emp.first_name = "Kevin";
+        emp.last_name = "Chalmers";
+        emp.title = "Engineer";
+        emp.salary = 55000;
+        app.displayEmployee(emp);
+    }
+
+    @Test
+    void displayEmployeeTestNull(){
+        app.displayEmployee(null);
+    }
+
+    @Test
+    void displayEmployeeTestEmpty(){
+        Employee emp = new Employee();
+        app.displayEmployee(emp);
+    }
 }
