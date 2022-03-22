@@ -22,20 +22,11 @@ public class App {
         String title = "Engineer";
         ArrayList<Employee> employees = a.getSpecificSalaries(title);
 
+        // Extract employee salary information
+        ArrayList<Employee> deptemployees = a.getSalariesByDepartment(a.getDepartment("Sales"));
+        a.printSalaries(deptemployees);
         // Test the size of the returned data - should be 240124
         System.out.println(employees.size());
-
-        // Print out salaries
-        printSalaries(employees);
-
-        // Get employees by department
-        //String dept_name = "Sales";
-        //Department departmentss = a.getDepartment(dept_name);
-
-        // Extract salaries by department
-        Department dept = new Department();
-        dept.dept_no = 007; //Sales Department
-        ArrayList<Employee> departments = a.getSalariesByDepartment(dept);
 
         // Disconnect from database
         a.disconnect();
