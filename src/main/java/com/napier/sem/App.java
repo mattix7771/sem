@@ -166,7 +166,7 @@ public class App {
                             "AND employees.emp_no = titles.emp_no " +
                             "AND salaries.to_date = '9999-01-01' " +
                             "AND titles.to_date = '9999-01-01' " +
-                            "AND titles.title = " + "\"" + title + "\""
+                            "AND titles.title = " + "\'" + title + "\'"
                             + "ORDER BY employees.emp_no ASC";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
@@ -267,18 +267,26 @@ public class App {
             Statement stmt = con.createStatement();
             // Create string for SQL statement
             String strSelect =
-                    "SELECT dept_no, dept_name, manager "
-                            + "FROM departments "
-                            + "WHERE dept_no = " + dept_name;
+                    "SELECT departments.dept_no, departments.dept_name, employees.emp_no, employees.first_name, employees.last_name "
+                            + "FROM departments, dept_manager, employees,salaries "
+                            + "WHERE departments.dept_name = '"+ dept_name +"' "
+                            + "AND departments.dept_no = dept_manager.dept_no "
+                            + "AND employees.emp_no = dept_manager.emp_no "
+                            + "AND salaries.emp_no = dept_manager.emp_no "
+                            + "AND salaries.to_date = '9999-01-01' "
+                            + "ORDER BY employees.emp_no ASC ";
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
-            // Return new employee if valid.
+            // Return new department if valid.
             // Check one is returned
             if (rset.next()) {
                 Department dept = new Department();
                 dept.dept_no = rset.getInt("dept_no");
                 dept.dept_name = rset.getString("dept_name");
-                dept.manager.first_name = rset.getString("manager");
+                dept.manager = new Employee();
+                dept.manager.emp_no = rset.getInt("emo_no");
+                dept.manager.first_name = rset.getString("first_name");
+                dept.manager.last_name = rset.getString("last_name");
                 return dept;
             } else
                 return null;
@@ -301,7 +309,7 @@ public class App {
                             "AND employees.emp_no = dept_emp.emp_no " +
                             "AND dept_emp.dept_no = departments.dept_no " +
                             "AND salaries.to_date = '9999-01-01' " +
-                            "AND departments.dept_no = d" + "\"" + dept.dept_no + "\""
+                            "AND departments.dept_no = d" + "\'" + dept.dept_no + "\'"
                             + "ORDER BY employees.emp_no ASC";
 
             // Execute SQL statement
